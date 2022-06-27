@@ -65,10 +65,10 @@
 // Digital I/O definitions
 // Push button Switches
 
-// SW1 :  (RE11)
-#define SW1                   PORTEbits.RE11
-// SW2 :  (RE12)
-#define SW2                   PORTEbits.RE12
+// SW1 :  (RE10)
+#define SW1                   PORTEbits.RE10
+// SW2 :  (RE11)
+#define SW2                   PORTEbits.RE11
         
 // S2 : PIM #83 - Used as START/STOP button of Motor
 #define BUTTON_START_STOP        SW1
@@ -78,10 +78,10 @@
 #define DEBOUNCE_DELAY  30 	//push button debounce delay, expressed in millisecond
 
 // Debug LEDs
-// LED2(LD11) : (RE7)
-#define LED2                    LATEbits.LATE7
-// LED1(LD10) : (RE6)
-#define LED1                    LATEbits.LATE6
+// LED2(LD11) : (RE13)
+#define LED2                    LATEbits.LATE13
+// LED1(LD10) : (RE13)
+#define LED1                    LATEbits.LATE12
         
 /*define to measure Ibus using Internal OP-AMP, undef to measure Ibus using external OP AMP*/    
 #define INTERNAL_OPAMP_CONFIG                 
@@ -96,16 +96,16 @@ void SetupGPIOPorts(void);
 // Section: Interface Routines
 // *****************************************************************************
 // *****************************************************************************
-inline static void CN_InterruptPortEFlagClear(void) 
+inline static void CN_InterruptPortDFlagClear(void) 
 { 
     uint16_t buffer;
     
-    buffer = CNSTATE;  
-    _CNEIF = 0;
+    buffer = CNSTATD;  
+    _CNDIF = 0;
 }
 
-inline static void CN_PortEEnable(void){CNCONEbits.ON = 1;}
+inline static void CN_PortDEnable(void){CNCONDbits.ON = 1;}
 
-inline static void CN_PortEDisable(void){CNCONEbits.ON = 0;}
+inline static void CN_PortDDisable(void){CNCONDbits.ON = 0;}
 
 #endif      // end of PORTCONFIG_H

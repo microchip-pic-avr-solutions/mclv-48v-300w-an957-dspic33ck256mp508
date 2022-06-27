@@ -75,7 +75,7 @@
 // *****************************************************************************  
 #define MC1_PWM_PDC1      PG1DC
 #define MC1_PWM_PDC2      PG2DC
-#define MC1_PWM_PDC3      PG4DC
+#define MC1_PWM_PDC3      PG3DC
 
 /** Button De-bounce in milli Seconds */
 #define	BUTTON_DEBOUNCE_COUNT      30
@@ -84,9 +84,9 @@
  */
 #define BOARD_SERVICE_TICK_COUNT   20
 
-#define HAL_MC1HallStateChangeInterrupt              _CNEInterrupt    
-#define HAL_MC1HallStateChangeDetectionEnable        CN_PortEEnable        
-#define HAL_MC1HallStateChangeInterruptFlagClear    CN_InterruptPortEFlagClear
+#define HAL_MC1HallStateChangeInterrupt              _CNDInterrupt    
+#define HAL_MC1HallStateChangeDetectionEnable        CN_PortDEnable        
+#define HAL_MC1HallStateChangeInterruptFlagClear    CN_InterruptPortDFlagClear
 #define HAL_MC1HallStateChangeMaxPeriodSet           SCCP4_SetTimerPeriod
 #define HAL_MC1HallStateChangeTimerPrescalerSet      SCCP4_SetTimerPrescaler    
 #define HAL_MC1HallStateChangeTimerStart             SCCP4_Timer_Start        

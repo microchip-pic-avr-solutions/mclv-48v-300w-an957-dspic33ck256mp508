@@ -163,35 +163,41 @@ void MapGPIOHWFunction(void)
 {
     /* ANALOG SIGNALS */       
     //IBUS
-    //Ibus Out
-    ANSELAbits.ANSELA4 = 1;
-    TRISAbits.TRISA4 = 1;   //OA3OUT/AN4/CMP3B/IBIAS3/RA4
+  
+     //Ibus Out
+    ANSELAbits.ANSELA0 = 1;
+    TRISAbits.TRISA0 = 1;   // Pin 16: OA1OUT/AN0/CMP1A/IBIAS0/RA0
     
     #ifdef INTERNAL_OPAMP_CONFIG
-        //Ibus- 
-    ANSELCbits.ANSELC1 = 1;
-    TRISCbits.TRISC1 = 1;   //Pin:28 OA3IN-/AN13/CMP1B/ISRC0/RP49/PMA7/RC1
+      
+    //Ibus- 
+    ANSELAbits.ANSELA1 = 1;
+    TRISAbits.TRISA1 = 1;   //Pin 18: OA1IN-/ANA1/RA1
     
     //Ibus+ 
-    ANSELCbits.ANSELC2 = 1;
-    TRISCbits.TRISC2 = 1;   //Pin 29 :OA3IN+/AN14/CMP2B/ISRC1/RP50/PMD13/PMA13/RC2
+    ANSELAbits.ANSELA2 = 1;
+    TRISAbits.TRISA2 = 1;    //Pin 20: OA1IN+/AN9/PMA6/RA2  
     
-    AMPCON1Hbits.NCHDIS3 = 0;    //Wide input range for Op Amp #3
-    AMPCON1Lbits.AMPEN3 = 1;     //Enables Op Amp #3
+    AMPCON1Hbits.NCHDIS1 = 0;    //Wide input range for Op Amp #1
+    AMPCON1Lbits.AMPEN1 = 1;     //Enables Op Amp #1
     
     AMPCON1Lbits.AMPON = 1;      //Enables op amp modules if their respective AMPENx bits are also asserted
      
     #endif
     // Potentiometer  input - used as Speed Reference
-    // POT1 
+    // Potentiometer #1 input - used as Speed Reference
+    ANSELCbits.ANSELC6= 1;
+    TRISCbits.TRISC6 = 1;   // PIN30: AN17/ANN1/IBIAS1/RP54/PMD12/PMA12/RC6
+    
+    /*Motor phase Voltage Signals*/
+    ANSELBbits.ANSELB8 = 1;
+    TRISBbits.TRISB8 = 1;    //PIN60: PGD1/AN10/RP40/SCL1/RB8
     ANSELBbits.ANSELB9 = 1;
-    TRISBbits.TRISB9 = 1;   // PIN61: PGC1/AN11/RP41/SDA1/RB9
-    
-    // DC Bus Voltage  
-    // VBUS 
+    TRISBbits.TRISB9 = 1;    //PIN61: PGC1/AN11/RP41/SDA1/RB9
+    ANSELCbits.ANSELC0 = 1;
+    TRISCbits.TRISC0 = 1;    //PIN16: AN12/ANN0/RP48/RC0
     ANSELCbits.ANSELC3 = 1;
-    TRISCbits.TRISC3 = 1;   // PIN33: AN15/CMP2A/IBIAS2/RP51/PMD11/PMA11/RC3
-    
+    TRISCbits.TRISC3 = 1; 
     /* Digital SIGNALS */   
     // DIGITAL INPUT/OUTPUT PINS
 
@@ -200,40 +206,43 @@ void MapGPIOHWFunction(void)
     // PWM1H : PIN #1  RP46/PWM1H/PMD5/RB14
     // PWM2L : PIN #80  RP45/PWM2L/PMD4/RB13
     // PWM2H : PIN #78  TDI/RP44/PWM2H/PMD3/RB12
-    // PWM4L : PIN #74  RP64/PWM4L/PMD0/RD0
-    // PWM4H : PIN #73  RP65/PWM4H/RD1
+    // PWM3L : PIN #76  TCK/RP43/PWM3L/PMD2/RB11
+    // PWM3H : PIN #75  TMS/RP42/PWM3H/PMD1/RB10
     TRISBbits.TRISB14 = 0 ;          
     TRISBbits.TRISB15 = 0 ;         
     TRISBbits.TRISB12 = 0 ;          
     TRISBbits.TRISB13 = 0 ;           
-    TRISDbits.TRISD1 = 0 ;          
-    TRISDbits.TRISD0 = 0 ;         
+    TRISBbits.TRISB11 = 0 ;          
+    TRISBbits.TRISB10 = 0 ;        
     
     // Debug LEDs
     // LED2 : 
-    TRISEbits.TRISE7 = 0;           // PIN:39 - RE7
+    TRISEbits.TRISE13 = 0;           // PIN:64 - RE13
     // LED1 : 
-    TRISEbits.TRISE6 = 0;           // PIN:37 - RE6
+    TRISEbits.TRISE12 = 0;           // PIN:62 - RE12
 
-    // Push button Switches
+
+
     
+   // Push button Switches
     // SW1 : 
-    TRISEbits.TRISE11 = 1;           // PIN:59 - RE11
+    TRISEbits.TRISE10 = 1;           // PIN:57 - RE10
     // SW2 : 
-    TRISEbits.TRISE12 = 1;           // PIN:62 - RE12
+    TRISEbits.TRISE11 = 1;           // PIN:59 - RE11
     
     //HALL Input Signals
-    TRISEbits.TRISE8 = 1 ;          
-    TRISEbits.TRISE9 = 1 ;         
-    TRISEbits.TRISE10 = 1 ; 
-	
-	/** Diagnostic Interface for LVMC etc.
+    TRISDbits.TRISD5 = 1 ;          
+    TRISDbits.TRISD6 = 1 ;         
+    TRISDbits.TRISD7 = 1 ; 
+	 //Configuring RP76 as PCI9 input for FLTLAT_OC_OV
+	_PCI9R = 76;
+	/** Diagnostic Interface for MCLV Board etc.
         Re-map UART Channels to the device pins connected to the following 
         PIM pins on the Motor Control Development Boards .
-        UART_RX : PIN #13 - RP78/PCI21/RD14 (Input)
-        UART_TX : PIN #14 - ANN2/RP77/RD13(Output)   */
-    _U1RXR = 78;
-    _RP77R = 0b000001;
+        UART_RX : PIN #14 - ANN2/RP77/RD13(Input)
+        UART_TX : PIN #13 - RP78/PCI21/RD14 (Output)   */
+    _U1RXR = 77;
+    _RP78R = 0b000001;
 
     CN_Configure();
 }
@@ -263,22 +272,22 @@ void MapGPIOHWFunction(void)
 
 void CN_Configure(void)
 {
-    CNCONE = 0;
+    CNCOND = 0;
 /*  ON: Change Notification (CN) Control for PORTx On bit
     1 = CN is enabled
     0 = CN is disabled   */
-    CNCONEbits.ON = 0;
+    CNCONDbits.ON = 0;
 /*    CNSTYLE: Change Notification Style Selection bit
     1 = Edge style (detects edge transitions, bits are used for a CNE)
     0 = Mismatch style (detects change from last port read event)       */    
-    CNCONEbits.CNSTYLE = 0;
+    CNCONDbits.CNSTYLE = 0;
      
-    CNEN0E = 0;
-    CNEN0Ebits.CNEN0E8 = 1;
-    CNEN0Ebits.CNEN0E9 = 1;
-    CNEN0Ebits.CNEN0E10 = 1;
+    CNEN0D = 0;
+    CNEN0Dbits.CNEN0D5 = 1;
+    CNEN0Dbits.CNEN0D6 = 1;
+    CNEN0Dbits.CNEN0D7 = 1;
 
-    _CNEIF = 0;
-    _CNEIE = 1;
-    _CNEIP = 7;
+    _CNDIF = 0;
+    _CNDIE = 1;
+    _CNDIP = 7;
 }

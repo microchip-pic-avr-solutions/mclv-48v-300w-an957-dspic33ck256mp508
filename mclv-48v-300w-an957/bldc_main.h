@@ -1,4 +1,4 @@
-/*******************************************************************************
+    /*******************************************************************************
  *  Sensored BLDCM Drive Configuration, Constants,Routine Header File
  * 
  *  File Name:
@@ -71,9 +71,12 @@ extern "C" {
 // Enable only one mode at a time
 // *****************************************************************************
 // *****************************************************************************   
-//#define OPENLOOP
-#define SPEED_PI_CLOSEDLOOP
-//#define CURRENT_PI_CLOSEDLOOP
+ #define OPENLOOP
+    
+#undef SPEED_PI_CLOSEDLOOP
+    
+
+#undef CURRENT_PI_CLOSEDLOOP
 // *****************************************************************************
 // *****************************************************************************
 // Section: Constants
@@ -111,7 +114,7 @@ extern "C" {
 #define SPEEDCNTR_OUTMIN       Q15(0.0)
 
 /** Current Control Loop Coefficients */
-#define CURRCNTR_PTERM         Q15(0.02)
+#define CURRCNTR_PTERM         Q15(0.15)
 #define CURRCNTR_ITERM         Q15(0.002)
 #define CURRCNTR_CTERM         Q15(0.999)
 #define CURRCNTR_OUTMAX        Q15(0.999)    

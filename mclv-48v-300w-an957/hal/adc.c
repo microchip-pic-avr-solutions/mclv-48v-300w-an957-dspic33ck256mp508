@@ -230,8 +230,8 @@ void Init_ADC(void)
     /*ADMOD0L configures Output Data Sign for Analog inputs  AN0 to AN7 */
     ADMOD0L = 0x0000;
     ADMOD0Hbits.SIGN15 = 0;
-    ADMOD0Hbits.SIGN11 = 0;
-    ADMOD0Lbits.SIGN4 = 1;
+    ADMOD1Lbits.SIGN17= 0;
+    ADMOD0Lbits.SIGN0 = 1;
     
     /*ADMOD1L configures Output Data Sign for Analog inputs  AN16 to AN23 */
     ADMOD1L = 0;
@@ -305,10 +305,13 @@ void Init_ADC(void)
     
     /* Trigger Source for Analog Input #15  = 0b0100 */
     ADTRIG3Hbits.TRGSRC15 = 0x4;
-    /* Trigger Source for Analog Input #11  = 0b0100 */
-    ADTRIG2Hbits.TRGSRC11 = 0x4;
+    /* Trigger Source for Analog Input #17  = 0b0100 */
+    ADTRIG4Lbits.TRGSRC17 = 0x4;
 
-    /* Trigger Source for Analog Input #4  = 0b0100 */    
-    ADTRIG1Lbits.TRGSRC4 = 0x4;
-
+    /* Trigger Source for Analog Input #0  = 0b0100 */    
+    ADTRIG0Lbits.TRGSRC0 = 0x4;
+    
+     ADTRIG2Hbits.TRGSRC10 = 0x04;
+     ADTRIG2Hbits.TRGSRC11 = 0x04;
+     ADTRIG3Lbits.TRGSRC12 = 0x04;
 }
