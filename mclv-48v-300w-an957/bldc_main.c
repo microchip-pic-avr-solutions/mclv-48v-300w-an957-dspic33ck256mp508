@@ -66,6 +66,8 @@
 // *****************************************************************************
 // *****************************************************************************  
 MCAPP_DATA_T     mcappData;
+uint16_t count;
+uint16_t hall_prev,hall_current;
 /******************************************************************************
  * Description: The main function initialises the microcontroller port configurations
  *              and settings. It is the main program which also reads the button 
@@ -139,14 +141,29 @@ void MCAPP_LoadSwitchingTable()
  *              and generates the switching pattern based on its sector.
  *****************************************************************************/
 void MCAPP_CheckHallUpdatePWM(void)
-{
+{   
     mcappData.sector = HAL_MC1HallValueRead();
-    if((mcappData.sector >=1) && (mcappData.sector <= 6))
+    hall_current =  HAL_MC1HallValueRead();
+    if (mcappData.sector)
     {
+        if((hall_current == hall_prev))//this section is written to prevent the overcurrent happening due to the stalling of thr rotor
+        {count++;}
+        else
+        {count = 0;}
+        if(count>20000)
+        {
+           mcappData.dutyCycle = 0;
+           HAL_MC1PWMDisableOutputs();
+           mcappData.state = MCAPP_CMD_WAIT; 
+        }
+       if((mcappData.sector >=1) && (mcappData.sector <= 6))
+       {
         //set PWM overdrive to the corresponding PWM channel
         PWM1_SwapOverrideEnableDataSet(PWM_STATE1[mcappData.sector]);
         PWM2_SwapOverrideEnableDataSet(PWM_STATE2[mcappData.sector]);
         PWM3_SwapOverrideEnableDataSet(PWM_STATE3[mcappData.sector]);      
+       }
+    hall_prev = mcappData.sector;
     }
 }
 /******************************************************************************
@@ -246,12 +263,12 @@ void MCAPP_StateMachine(void)
         break;
 
         case MCAPP_RUN:
-          
+            
             MCAPP_CheckHallUpdatePWM();
             
             #ifdef   OPENLOOP                      
             mcappData.dutyCycle = (int16_t)((__builtin_mulss(mcappData.analogInputs.measurePot,
-                                        mcappData.pwmPeriod)>>15)); 
+                                         mcappData.pwmPeriod)>>15));
             if(mcappData.dutyCycle <= MIN_DUTY)
             {
                 mcappData.dutyCycle = MIN_DUTY;
@@ -275,8 +292,8 @@ void MCAPP_StateMachine(void)
             MCAPP_CalcMovingAvgCurrent(mcappData.measuredCurrent);
             mcappData.piInputCurrent.inMeasure = mcappData.movingAvgFilterCurrent.avg;
             mcappData.piInputCurrent.inReference = mcappData.desiredCurrent;
-            MC_ControllerPIUpdate_Assembly(mcappData.piInputCurrent.inReference,
-                                           mcappData.piInputCurrent.inMeasure,
+             MC_ControllerPIUpdate_Assembly(mcappData.piInputCurrent.inReference,
+                                               mcappData.piInputCurrent.inMeasure,
                                            &mcappData.piInputCurrent.piState,
                                            &mcappData.piOutputCurrent.out);
             mcappData.dutyCycle = (int16_t) (__builtin_mulss(mcappData.piOutputCurrent.out, mcappData.pwmPeriod) >> 15);
@@ -284,7 +301,7 @@ void MCAPP_StateMachine(void)
 
             /** Set Duty Cycle */
             HAL_MC1PWMSetDutyCyclesIdentical(mcappData.dutyCycle);
-            
+          
             if(mcappData.changeDirection == 1)
             {
                 mcappData.dutyCycle = 0;
@@ -334,6 +351,7 @@ void MCAPP_StateMachine(void)
             HAL_MC1PWMDisableOutputs();
             
             mcappData.state = MCAPP_INIT;
+            count =0;
             
         break;
 
