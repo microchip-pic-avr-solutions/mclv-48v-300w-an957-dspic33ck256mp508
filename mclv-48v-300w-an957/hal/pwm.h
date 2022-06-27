@@ -120,7 +120,7 @@ inline static void PWM2_SwapOverrideEnableDataSet(uint16_t data)
 }
 inline static void PWM3_SwapOverrideEnableDataSet(uint16_t data)
 {
-    PG4IOCONL = data & 0X7C00;
+    PG3IOCONL = data & 0X7C00;
 }
 inline static uint16_t PWM_MasterPeriodRead(void)
 {

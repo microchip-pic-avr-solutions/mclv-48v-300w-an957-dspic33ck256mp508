@@ -66,8 +66,8 @@
 // *****************************************************************************
 // ADC MODULE Related Definitions
 #define ADCBUF_VBUS     ADCBUF15
-#define ADCBUF_POT      ADCBUF11
-#define ADCBUF_IBUS     ADCBUF4
+#define ADCBUF_POT      ADCBUF17
+#define ADCBUF_IBUS     ADCBUF0
 /* This defines number of current offset samples for averaging 
  * If the 2^n samples are considered specify n(in this case 2^7(= 128)=> 7*/
 #define  CURRENT_OFFSET_SAMPLE_SCALER         7
