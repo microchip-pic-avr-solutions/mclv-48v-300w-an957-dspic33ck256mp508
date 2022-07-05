@@ -48,19 +48,19 @@ To clone or download this application from Github, go to the [main page of this 
 
 3. <p style='text-align: justify;'> Connect the three phase wires from the motor to PHA, PHB & PHC terminals of connector J4, provided on the MCLV-48V-300W Inverter Board. as mentioned in the below table. </p>
 
-   | MCLV Board <br>(J4 connector)|Hurst075 Motor| |
-   | :--------:| :-----------:|:--:|
+   | MCLV Board <br>(J4 connector)|Hurst075 Motor| 
+   | :--------:| :-----------:|
     |           |Winding Terminals (Color as per image below) 
-    | PHC   | Red   | 
-    | PHB   | Black | 
-    | PHA   | White | 
+    | PHC   | Red |  
+    | PHB   | Black |
+    | PHA   | White |
     <p align="left">
        <img  src="images/motorconnection.png"></p>
 
 4. <p style='text-align: justify;'>Connect the hall sensors from the motor to HA, HB and HC terminals of connector J5, provided on the MCLV-48V-300W Inverter Board as mentioned in the below table. </p>
 
-    |MCLV Board  <br> (J5 connector)|	Hurst075 Motor||
-    |:---:|:----------------------:|:----------------------:|
+    |MCLV Board  <br> (J5 connector)|	Hurst075 Motor|
+    |:---:|:----------------------:|
     ||Hall Terminals(Color as per image above)|	
      |5V|	Red|	
      |GND|	Black|	
