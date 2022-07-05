@@ -10,7 +10,7 @@ This document describes the setup requirements for running the Sensored BLDC/PMS
 ## 2.	SUGGESTED DEMONSTRATION REQUIREMENTS
 
 ### 2.1 Motor Control Application Firmware Required for the Demonstration
-To clone or download this application from Github, go to the [main page of this repository](https://github.com/microchip-pic-avr-solutions/mclv-48v-300w-an957) and then click Clone button to clone this repository or download as zip file.
+To clone or download this application from Github, go to the [main page of this repository](https://github.com/microchip-pic-avr-solutions/mclv-48v-300w-an957-dsPIC33CK256MP508 ) and then click Clone button to clone this repository or download as zip file.
 > **_NOTE:_**
 >In this document, hereinafter this firmware package is referred as firmware.
 ### 2.2 Software Tools Used for Testing the firmware
@@ -263,15 +263,14 @@ To view data plots continuously, uncheck<span style="font-family:Courier New; fo
  
  ## 6. REFERENCES:
 For additional information, refer following documents or links.
-1. AN957 Application Note “Sensored BLDC Motor Control Using dsPIC30F2010”
-2. AN1017 Application Note “Sinusoidal Control of PMSM Motors with dsPIC30F / dsPIC33F/ dsPIC33E DSC”
+1. AN957 Application Note [“Sensored BLDC Motor Control Using dsPIC30F2010”](https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ApplicationNotes/ApplicationNotes/BLDCMC00957a.pdf)
+2. AN1017 Application Note [“Sinusoidal Control of PMSM Motors with dsPIC30F / dsPIC33F/ dsPIC33E DSC”](https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ApplicationNotes/ApplicationNotes/01017a.pdf)
 3. MCLV-48V-300W Inverter Board User’s Guide 
-4. dsPIC33CK256MP508 Family datasheet (DS70005349).
-5. Family Reference manuals (FRM) of dsPIC33CK256MP508 family
+4. dsPIC33CK256MP508 Family datasheet ([DS70005349](https://ww1.microchip.com/downloads/en/DeviceDoc/dsPIC33CK256MP508-Family-Data-Sheet-DS70005349H.pdf)).
+5. [Family Reference manuals (FRM) of dsPIC33CK256MP508 family](https://www.microchip.com/en-us/product/dsPIC33CK256MP508#document-table)
 6. MPLAB® X IDE User’s Guide (DS50002027) or MPLAB® X IDE help
 7. [MPLAB® X IDE installation](http://microchipdeveloper.com/mplabx:installation)
 8. [MPLAB® XC16 Compiler installation](http://microchipdeveloper.com/xc16:installation)
-
 
 
 
