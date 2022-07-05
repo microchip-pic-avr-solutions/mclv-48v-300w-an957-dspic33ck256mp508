@@ -263,15 +263,14 @@ To view data plots continuously, uncheck<span style="font-family:Courier New; fo
  
  ## 6. REFERENCES:
 For additional information, refer following documents or links.
-1. AN957 Application Note “Sensored BLDC Motor Control Using dsPIC30F2010”
-2. AN1017 Application Note “Sinusoidal Control of PMSM Motors with dsPIC30F / dsPIC33F/ dsPIC33E DSC”
+1. AN957 Application Note [“Sensored BLDC Motor Control Using dsPIC30F2010”](https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ApplicationNotes/ApplicationNotes/BLDCMC00957a.pdf)
+2. AN1017 Application Note [“Sinusoidal Control of PMSM Motors with dsPIC30F / dsPIC33F/ dsPIC33E DSC”](https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ApplicationNotes/ApplicationNotes/01017a.pdf)
 3. MCLV-48V-300W Inverter Board User’s Guide 
-4. dsPIC33CK256MP508 Family datasheet (DS70005349).
-5. Family Reference manuals (FRM) of dsPIC33CK256MP508 family
+4. dsPIC33CK256MP508 Family datasheet ([DS70005349](https://ww1.microchip.com/downloads/en/DeviceDoc/dsPIC33CK256MP508-Family-Data-Sheet-DS70005349H.pdf)).
+5. [Family Reference manuals (FRM) of dsPIC33CK256MP508 family](https://www.microchip.com/en-us/product/dsPIC33CK256MP508#document-table)
 6. MPLAB® X IDE User’s Guide (DS50002027) or MPLAB® X IDE help
 7. [MPLAB® X IDE installation](http://microchipdeveloper.com/mplabx:installation)
 8. [MPLAB® XC16 Compiler installation](http://microchipdeveloper.com/xc16:installation)
-
 
 
 
